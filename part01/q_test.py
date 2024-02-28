@@ -1,3 +1,5 @@
+from typing import Any
+
 """
 english_dict = {
     'flower': '꽃',
@@ -177,6 +179,8 @@ else:
     print('불가능한 비밀번호입니다.')
 
 """
+
+
 """
 
 dan = int(input('출력할 구구단을 입력하세요 >>> '))
@@ -302,7 +306,7 @@ while True:
 print(f'평균 = {sum(exam) / len(exam)}, 최대 = {max(exam)}, 최소 = {min(exam)}')
 
 """
-
+"""
 
 months_eng = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
               'August', 'September', 'October', 'November', 'December']
@@ -325,5 +329,295 @@ for i, v in enumerate(months_eng):
 
 for k, v in months_dict.items():
     print(f'{k} = {v}일')
+
+"""
+"""
+
+# 주민등록번호에서 생년월일 6자리를 추출하는 프로그램
+# 사용자로부터 하이픈을 포함한 전체 주민등록번호를 입력받아 처리하는데
+# 만약 하이픈의 위치가 올바르지 않다면 오류 메시지를 출력하고 다시 입력 받도록 처리
+
+while True:
+    p = input('하이픈을 포함하여 전체 주민등록번호를 입력하세요 >>> ')
+    if p.find('-') != 6:  # 문자열 내부에 포함된 특정 문자열을 찾고자 할 때 사용
+        print('하이픈의 위치가 잘못되었습니다.')
+        continue
+
+    birthday = p.split('-')
+    print(birthday)
+    print(f'생년월일은 {birthday[0]}입니다.')
+    print(f'생년월일은 {p[0:6]}입니다.')
+    break
+
+"""
+
+"""
+1. 우리나라의 전화번호는 '지역번호-국번-가입자 개별번호'형식으로 되어 있습니다.
+
+02-543-2109
+02-2345-6789
+032-789-0123
+031-4567-8900
+
+어떤 형식의 전화번호를 입력하더라도 '국번'을 추출하여 출력하는 프로그램을 구현하세요.
+
+실행 예)
+전화번호를 입력하세요 >>> 02-1234-5678
+1234
+
+# 1. find() 메서드와 슬라이싱 사용
+phone = input('전화번호를 입력하세요 >>> ')
+start = phone.find('-') + 1
+end = phone.find('-', start)
+code = phone[start:end]
+print(code)
+
+# 2. split() 메소드 활용
+number = input('전화번호를 입력하세요 >>> ')
+num_sp = number.split('-')[1]
+print(num_sp)
+"""
+
+"""
+2. '숫자3자리-숫자2자리-숫자5자리' 형식(예: 123-45-67890)의 사업자등록번호를 입력받아서 형식이 
+맞는지 점검하는 프로그램을 구현하세요.
+다음 지시사항을 모두 점검해야 합니다.
+
+지시사항
+1. 전체 글자 수를 점검합니다.
+2. 모든 하이픈(-)의 위치가 올바른지 점검합니다.
+3. 하이픈(-)을 제외하면 모두 숫자인지 점검합니다.
+
+실행 예) 
+사업자등록번호를 입력하세요(예: 123-45-67890) >>> 123-사오-67890
+올바른 형식이 아닙니다.
+--------------------
+사업자등록번호를 입력하세요(예: 123-45-67890) >>> 123-4-67890
+올바른 형식이 아닙니다
+--------------------
+사업자등록번호를 입력하세요(예: 123-45-67890) >>> 123-45-67890
+올바른 형식입니다.
+
+힌트 : 숫자인지는 점검할 때는 isdecimal() 메서드를 이용합니다.
+"""
+"""
+# case1
+while True:
+    num = input('사업자등록번호를 입력하세요(예: 123-45-67890) >>> ')
+    if len(num) != 12:
+        print('올바른 형식이 아닙니다.')
+        continue
+    if num.find('-') != 3:
+        print('올바른 형식이 아닙니다.')
+        continue
+    if num.rfind('-') != 6:
+        print('올바른 형식이 아닙니다.')
+        continue
+    r_num = num.replace('-', '')
+    if not r_num.isdecimal():
+        print('올바른 형식이 아닙니다')
+        continue
+    print('올바른 형식입니다.')
+    break
+
+# case2
+no = input('사업자등록번호를 입력하세요(예: 123-45-67890) >>> ')
+condition1 = (no.find('-') == 3)
+condition2 = (no.find('-', 4) == 6)
+condition3 = (len(no) == 12)
+condition4 = (no.replace('-', '').isdecimal())
+if condition1 and condition2 and condition3 and condition4:
+    print('올바른 형식입니다.')
+else:
+    print('올바른 형식이 아닙니다')
+"""
+"""
+# 커피 자판기 프로그램.
+# 1. 커피 자판기에 돈과 주문할 커피를 전달
+# 2. 주문할 수 있는 커피의 종류와 가격
+# '아메리카노': 1000,
+# '카페라떼': 1500,
+# '카푸치노': 2000
+# 3. 없는 커피를 주문할 경우 입력한 돈을 그대로 반환
+# 4. 구매 금액이 부족하면 입력한 돈을 그대로 반환
+# 5. 정상 주문이면 주문한 커피와 잔돈을 반환
+"""
+"""
+def coffee_machine(money: int, pick: str) -> tuple[int, str]:
+    print(f'{money}원에 {pick}를 선택하셧습니다.')
+    # 커피와 가격을 하나의 데이터로 처리하기 위해 딕셔너리 dict를 사용
+    menu = {
+        '아메리카노': 1000,
+        '카페라떼': 1500,
+        '카푸치노': 2000
+    }
+    # 없는 커피를 주문하는 경우
+    if pick not in menu:  # 없는 커피를 주문하는 경우
+        print(f'{pick}는 판매하지 않습니다.')
+        return money, '없는 메뉴'
+    elif menu[pick] > money:  # 구매할 금액이 부족한 경우
+        print(f'{pick}는 {menu[pick]}원 입니다.')
+        return money, '금액 부족'
+    else:  # 정상 주문이면 잔돈과 선택한 커피를 반환
+        return money - menu[pick], pick
+
+order = input('커피를 선택하세요. (아메리카노, 카페라떼, 카푸치노) >>> ')
+pay = int(input('얼마를 내시나요? >>> '))
+
+change, coffee = coffee_machine(pay, order)
+print(f'잔돈 {change}원, 커피 {coffee}')
+"""
+
+"""
+1. 700원짜리 음료수를 뽑을 수 있는 자판기 프로그램을 구현하세요.
+돈을 넣으면 몇 잔의 음료수를 뽑을 수 있는지 그리고 잔돈은 얼마인지 모든 경우의 수를 출력하도록 구현하세요.
+
+함수 정의
+* 반환값 : 없음
+* 함수 이름 : vending_machine()
+* 매개변수 : 정수 money
+
+코드 구성
+def vending_machine(money):
+ # 함수 구현
+
+vending_machine(3000)
+
+실행 예)
+음료수 = 0개, 잔돈 = 3000원
+음료수 = 1개, 잔돈 = 2300원
+음료수 = 2개, 잔돈 = 1600원
+음료수 = 3개, 잔돈 = 900원
+음료수 = 4개, 잔돈 = 200원
+"""
+"""
+def vending_machine(money: int) -> None:
+    count: int = 0
+    price: int = 700
+    while True:
+        print(f'음료수 = {count}개, 잔돈 = {money}')
+        money = money - price
+        count += 1
+        if money < price:
+            print(f'음료수 = {count}개, 잔돈 = {money}')
+            break
+
+vending_machine(3000)
+"""
+"""
+2. 키(key)가 '과목명', 값(value)이 '점수'인 marks 딕셔너리를 전달하면
+해당 딕셔너리에 저장된 점수들의 평균을 반환하는 get_average() 함수를 구현하세요.
+
+함수 정의
+* 반환값 : 평균
+* 함수 이름 :get_average()
+* 매개변수 : 딕셔너리 marks
+
+코드 구성
+def get_average(marks):
+ # 함수 구현
+
+marks = {'국어':90, '영어':80, '수학':85}
+average = get_average(marks)
+print(f'평균은 {average}입니다.')
+
+실행 예)
+평균은 85.0점입니다.
+"""
+"""
+def get_average(marks: dict[Any, int]) -> float:
+    return sum(marks.values()) / len(marks)
+
+marks = {'국어':90, '영어':80, '수학':85}
+average = get_average(marks)
+print(f'평균은 {average}입니다.')
+"""
+"""
+1. 자동으로 실행되는 로또 추첨 프로그램을 다음 지시사항에 따라 구현하세요.
+
+지시사항
+1. 1에서 45 사이의 모든 정수를 순서대로 pot 리스트에 저장합니다.
+2. 다음 과정을 6번 반복합니다.
+ * pot 리스트를 무작위로 섞어줍니다.
+ * pot 리스트의 마지막 숫자를 하나만 빼서 jackpot 리스트에 저장합니다.
+ * 2초 동안 잠시 멈춥니다.
+3. jackpot 리스트의 모든 요소를 오름차순 정렬합니다.
+4. jackpot 리스트의 모든 요소를 출력합니다.
+
+실행 예)
+1번째 당첨번호는 4입니다.
+2번째 당첨번호는 34입니다.
+3번째 당첨번호는 13입니다.
+4번째 당첨번호는 36입니다.
+5번째 당첨번호는 44입니다.
+6번째 당첨번호는 31입니다.
+이번 당첨번호는 [4, 13, 31, 34, 36, 44] 입니다.
+"""
+import time
+import random
+jackpot = []
+pot = list(range(1, 46))
+# print(pot)
+for n in range(6):
+    random.shuffle(pot)
+    # print(pot)
+    jackpot_num = pot.pop()
+    jackpot.append(jackpot_num)
+    time.sleep(2)
+    print(f'{n + 1}번째 당첨번호는 {jackpot_num}입니다.')
+
+jackpot.sort()
+print(f'이번 당첨번호는 {jackpot} 입니다.')
+
+"""
+2. 다음 지시사항에 따라 UpDown게임을 구현하세요.
+
+지시사항
+1. 1에서 100 사이의 정수 중 하나를 임의로 생성하면
+사용자는 그 숫자를 맞힐 때까지 값을 예상하여 입력합니다.
+2. 사용자가 입력한 값이 정답보다 작으면 Up, 정답보다 크면 Down을 출력합니다.
+3. 정답을 맞히면 몇 초 만에 정답을 맞혔는지 출력하세요.
+이때 소수 아래 값은 내림 처리하여 정수로 출력하세요.
+
+실행 예)
+UpDown게임을 시작합니다.
+어떤 값일까요? >>> 30
+Up
+어떤 값일까요? >>> 70
+Down
+어떤 값일까요? >>> 60
+Down
+어떤 값일까요? >>> 50
+Up
+어떤 값일까요? >>> 55
+Up
+어떤 값일까요? >>> 56
+Up
+어떤 값일까요? >>> 57
+Up
+어떤 값일까요? >>> 58
+58! 정답입니다.
+34초 만에 성공했습니다.
+"""
+import math
+result = random.randint(1, 100)
+print(result)
+print('UpDown게임을 시작합니다.')
+while True:
+    start = time.time()
+    answer = int(input('어떤 값일까요? >>> '))
+    if answer < result:
+        print('UP')
+        continue
+    elif answer > result:
+        print('DOWN')
+        continue
+    elif answer == result:
+        print(f'{result}! 정답입니다.')
+        end = time.time()
+        stop = end - start
+        stop_ceil = math.ceil(stop)
+        print(f'{stop_ceil}초 만에 성공했습니다.')
+        break
 
 

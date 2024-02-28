@@ -540,3 +540,12 @@ for idx in range(len(names)):
     print(f'{names[idx]}의 점수는 {scores[idx]}입니다.')
 
 
+
+
+
+
+
+
+
+
+
