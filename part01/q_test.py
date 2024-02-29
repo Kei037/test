@@ -553,6 +553,7 @@ print(f'평균은 {average}입니다.')
 6번째 당첨번호는 31입니다.
 이번 당첨번호는 [4, 13, 31, 34, 36, 44] 입니다.
 """
+"""
 import time
 import random
 jackpot = []
@@ -568,7 +569,7 @@ for n in range(6):
 
 jackpot.sort()
 print(f'이번 당첨번호는 {jackpot} 입니다.')
-
+"""
 """
 2. 다음 지시사항에 따라 UpDown게임을 구현하세요.
 
@@ -599,6 +600,9 @@ Up
 58! 정답입니다.
 34초 만에 성공했습니다.
 """
+"""
+import time
+import random
 import math
 result = random.randint(1, 100)
 print(result)
@@ -616,8 +620,329 @@ while True:
         print(f'{result}! 정답입니다.')
         end = time.time()
         stop = end - start
-        stop_ceil = math.ceil(stop)
-        print(f'{stop_ceil}초 만에 성공했습니다.')
+        print(f'{math.floor(stop)}초 만에 성공했습니다.')
         break
+"""
 
+"""
+1. 다음 지시사항을 읽고 책 제목과 저자 정보를 저장할 수 있는 Book 클래스를 생성하세요.
 
+지시사항
+1. 책 제목과 책 저자 정보를 출력하는 print_info() 메서드를 구현하세요.
+2. 다음과 같은 방법으로 book1과 book2 인스턴스를 생성하세요.
+
+# book1, book2 인스턴스의 생성
+book1 = Book()
+book2 = Book()
+
+# book1, book2 제목과 저자 정보 저장
+book1.set_info('파이썬', '민경태')
+book2.set_info('어린왕자', '생텍쥐페리')
+
+실행 예) 
+책 제목: 파이썬
+책 저자: 민경태
+책 제목: 어린왕자
+책 저자: 생텍쥐페리
+"""
+class Book:
+    def set_info(self, name: str, person: str) -> None:
+        self.name = name
+        self.person = person
+    def print_info(self):
+        print(f'책 제목: {self.name}')
+        print(f'책 저자: {self.person}')
+book1 = Book()
+book2 = Book()
+book1.set_info('파이썬', '민경태')
+book2.set_info('어린왕자', '생텍쥐페리')
+book1.print_info()
+book2.print_info()
+print()
+"""
+2. 다음 지시사항을 읽고 시, 분, 초로 구성된 Watch 클래스를 생성하세요.
+
+지시사항
+1. 사용자로부터 'HH:mm:ss'형식의 시간을 입력받아서 이를 Watch 클래스의 hour, minute, second 
+인스턴스 변수에 저장하세요.
+2. add_hour() 메서드를 이용해서 지정된 시간이 지난 시간을 계산하세요.
+3. add_minute() 메서드를 이용해서 지정된 분이 지난 시간을 계산하세요.
+4. add_second() 메서드를 이용해서 지정된 초가 지난 시간을 계산하세요.
+5. hour는 0 ~ 23, minute는 0 ~ 59, second는 0 ~ 59 사이의 값만 가질 수 있습니다.
+
+실행 예) 
+시간을 입력하세요 >>> 12:00:00
+계산할 시간을 입력하세요 >>> 3
+계산할 분을 입력하세요 >>> 90
+계산할 초를 입력하세요 >>> 3690
+계산된 시간은 17시 31분 30초입니다
+"""
+# class Wacth:
+#     def add_hour(self, hour: int, s_time) -> None:
+#         self.hour = hour + s_time
+#         print(self.hour)
+#     def add_minute(self, minute: int, s_time) -> None:
+#         sum_minute = (self.hour * 60) + minute + s_time
+#         self.hour = (sum_minute // 60) % 24
+#         self.minute = (sum_minute % 60)
+#     def add_second(self, second: int, s_time) -> None:
+#         total_seconds = self.hour * 3600 + self.minute * 60 + second + s_time
+#         self.hour = (total_seconds // 3600) % 24
+#         self.minute = (total_seconds // 60) % 60
+#         self.second = total_seconds % 60
+# wacth = Wacth()
+# i_time = input('시간을 입력하세요 >>> ')
+# s_time = i_time.split(':')
+# wacth.add_hour(int(input('계산할 시간을 입력하세요 >>> ')), int(s_time[0]))
+# wacth.add_minute(int(input('계산할 분을 입력하세요 >>> ')), int(s_time[1]))
+# wacth.add_second(int(input('계산할 초를 입력하세요 >>> ')), int(s_time[2]))
+#
+# print(f'계산된 시간은 {wacth.hour}시 {wacth.minute}분 {wacth.second}초 입니다')
+# print()
+#
+# class Wacth2:
+#     def set_time(self) -> None:
+#         time: str = input("시간을 입력하세요 >>> ")
+#         self.hour: int = int(time[0:2])
+#         self.minute: int = int(time[3:5])
+#         self.second: int = int(time[6:8])
+#     def add_hour(self) -> None:
+#         hour: str = input('계산할 시간을 입력하세요 >>> ')
+#         self.hour += int(hour)
+#     def add_minute(self) -> None:
+#         minute = input('계산할 분을 입력하세요 >>>')
+#         self.hour += int(minute) // 60
+#         self.minute += int(minute) % 60
+#     def add_second(self) -> None:
+#         second = input('계산할 초을 입력하세요 >>>')
+#         self.hour += int(second) // 3600
+#         self.minute += int(second) % 3600 // 60
+#         self.second += int(second) % 60
+#     def print_time(self) -> None:
+#         print(f'계산된 시간은 {self.hour}시, {self.minuter}분, {self.second}초입니다.')
+# wacth2 = Wacth2()
+# wacth2.set_time()
+# wacth2.add_hour()
+# wacth2.add_minute()
+# wacth2.add_second()
+# wacth2.print_time()
+# print()
+"""
+3. 다음 지시사항을 읽고 노래 제목과 장르 정보를 저장할 수 있는 Song 클래스와 가수 이름과 
+대표곡 정보를 저장할 수 있는 Singer 클래스를 구현하세요.
+
+지시사항
+1. 다음과 같은 방법으로 Song과 Singer 인스턴스를 생성하고 필요한 정보를 저장한 뒤 그 정보를 출력하세요.
+# song 인스턴스 생성
+song = Song()
+song.set_song('취중진담', '발라드')
+
+# singer 인스턴스 생성
+singer = Singer()
+singer.set_singer('김동률')
+
+# singer 의 대표곡 지정
+singer.hit_song(song)
+
+# singer 정보 출력
+singer.print_singer()
+
+2. Song 클래스는 다음 메서드를 반드시 가지고 있어야 합니다.
+set_song() 메서드 : 노래 제목과 장르를 저장하는 메서드
+print_song() 메서드 : 노래 제목과 장르를 출력하는 메서드
+
+3. Singer 클래스는 다음 메서드를 반드시 가지고 있어야 합니다.
+set_singer() 메서드 : 가수 이름을 저장하는 메서드
+hit_song() 메서드 : 대표곡을 저장하는 메서드
+print_singer 메서드 : 가수 이름과 대표곡 제목과 장르를 출력하는 메서드
+
+실행 예) 
+가수이름: 김동률
+노래제목: 취중진담(발라드)
+"""
+"""
+class Song:
+    def set_song(self, song_name, song_type):
+        self.song_name = song_name
+        self.song_type = song_type
+    def print_song(self):
+        print(f'노래제목: {self.song_name}({self.song_type})')
+
+class Singer():
+    def set_singer(self, singer_name: str) -> None:
+        self.singer_name = singer_name
+    def hit_song(self, song: Song):
+        self.song = Song
+    def print_singer(self):
+        print(f'가수이름: {self.singer_name}')
+        self.song.print_song()
+
+song = Song()
+song.set_song('취중진담', '발라드')
+
+singer = Singer()
+singer.set_singer('김동률')
+
+singer.hit_song(song)
+
+singer.print_singer()
+"""
+
+"""
+1. 다음 지시사항을 읽고 이름과 전체 인구수를 저장할 수 있는 Person 클래스를 생성하세요.
+
+지시사항
+1) 다음과 같은 방법으로 man과 woman 인스턴스를 생성하세요.
+man = Person('james')
+woman = Person('emily')
+
+2) man과 woman 인스턴스가 생성되면 다음과 같은 메세지를 출력할 수 있도록 처리하세요.
+james is born.
+emily is born.
+
+3) 다음 코드를 통해서 전체 인구수를 조회할 수 있도록 처리하세요.
+print('전체 인구수: {}명'.format(Person.get_population())) # 전체 인구수: 2명
+
+4) 다음과 같은 방법으로 man 인스턴스를 삭제하세요.
+del man
+
+5) man 인스턴스가 삭제되면 다음과 같은 메시지를 출력할 수 있도록 처리하세요.
+james is dead.
+
+실행 예)
+james is born.
+emily is born.
+전체 인구수: 2명
+james is dead.
+전체 인구수: 1명
+emily is dead.
+"""
+class Person:
+    count = 0
+    def __init__(self, name: str):
+        self.name = name
+        Person.count += 1
+        print(f'{name} is born.')
+
+    @classmethod
+    def get_population(cls):
+        return cls.count
+
+    def __del__(self):
+        Person.count -= 1
+        print(f'{self.name} is dead.')
+
+man = Person('james')
+woman = Person('emily')
+print(f'전체 인구수: {Person.get_population()}명')
+del man
+print(f'전체 인구수: {Person.get_population()}명')
+del woman
+print()
+"""
+2. 다음 지시사항을 읽고 가게의 매출을 구할 수 있는 Shop 클래스를 구현하세요.
+
+지시사항
+1) Shop 클래스는 다음과 같은 클래스 변수를 가지고 있습니다.
+total은 전체 매출액을 의미하고 menu_list의 각 요소는 {메뉴명: 가격}으로 구성된 딕셔너리입니다.
+
+total = 0
+menu_list = [{'떡볶이': 3000}, {'순대': 3000}, {'튀김': 500}, {'김밥': 2000}]
+
+2) 매출이 생기면 다음과 같은 방식으로 메뉴와 판매량을 작성합니다.
+Shop.sales('떡볶이', 1)  # 떡볶이를 1개 판매
+Shop.sales('김밥', 2)  # 김밥을 2개 판매
+Shop.sales('튀김', 5)  # 튀김을 5개 판매
+
+3) 모든 매출을 작성한 뒤 다음과 같은 방식으로 전체 매출액을 확인합니다.
+매출: 9500원
+"""
+class Shop:
+    total = 0
+    menu_list = [{'떡볶이': 3000}, {'순대': 3000}, {'튀김': 500}, {'김밥': 2000}]
+
+    @classmethod
+    def sales(cls, name, num):
+        for menu in cls.menu_list:
+            if menu.get(name) != None:
+                cls.total += int(menu.get(name)) * num
+
+    def get_total(cls):
+        print(f'매출: {cls.total}원')
+shop = Shop()
+shop.sales('떡볶이', 1)
+shop.sales('김밥', 2)
+shop.sales('튀김', 5)
+shop.get_total()
+"""
+3. 다음 지시사항을 읽고 Hybrid 클래스를 구현하세요.
+
+지시사항
+1) 다음과 같은 슈퍼 클래스 Car를 가지고 있는 서브 클래스 Hybrid를 구현하세요.
+class Car:
+
+  max_oil = 50 # 최대 주유량
+
+  def __init__(self, oil):
+    self.oil = oil
+
+  def add_oil(self, oil):
+    if oil <= 0: # 0 이하의 주유는 진행하지 않음
+       return
+    self.oil += oil
+    if self.oil > Car.max_oil: # 주유 후 최대 주유량 초과 상태이면
+      self.oil = Car.max_oil # 현재 주유량을 최대 주유량으로 설정
+
+  def car_info(self):
+    print('현재 주유상태: {}'.format(self.oil))
+
+2) 서브 클래스 Hybrid는 다음과 같은 특징을 가지고 있습니다.
+최대 배터리 충전량은 30입니다.
+배터리를 충전하는 charge() 메서드가 있습니다. 
+최대 충전량을 초과하도록 충전할 수 없고, 0보다 작은 값으로 충전할 수 없습니다.
+현재 주유량과 충전량을 모두 확인할 수 있는 hybrid_info() 메서드가 있습니다.
+
+3) 다음과 같은 방식으로 전체 동작을 확인할 수 있습니다.
+car = Hybrid(0, 0)
+car.add_oil(100)
+car.charge(50)
+car.hybrid_info() # 현재 주유상태: 50 # 현재 충전상태: 30
+"""
+class Car:
+
+  max_oil = 50 # 최대 주유량
+
+  def __init__(self, oil: int):
+    self.oil = oil
+
+  def add_oil(self, oil):
+    if oil <= 0: # 0 이하의 주유는 진행하지 않음
+       return
+    self.oil += oil
+    if self.oil > Car.max_oil: # 주유 후 최대 주유량 초과 상태이면
+      self.oil = Car.max_oil # 현재 주유량을 최대 주유량으로 설정
+
+  def car_info(self):
+    print('현재 주유상태: {} '.format(self.oil), end='')
+
+class Hybrid(Car):
+    max_charge = 30 # 최대 배터리 충전량
+    def __init__(self, oil: int, elec: int):
+        super().__init__(oil)
+        self.elec = elec
+
+    def charge(self, elec):
+        if self.elec < 0:
+            return
+        if self.elec > Hybrid.max_charge:
+            self.elec = Hybrid.max_charge
+        else:
+            self.elec = elec
+    def hybrid_info(self):
+        super().car_info()
+        print(f'현재 충전상태: {self.elec}')
+
+car = Hybrid(0, 0)
+car.add_oil(100)
+car.charge(50)
+car.hybrid_info()
