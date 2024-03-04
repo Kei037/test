@@ -188,5 +188,3 @@ with open('./output/연락처_복사본.txt', 'rt', encoding='utf-8') as file:
     data_list = file.readlines()
     sys.stdout.writelines(data_list)
 
-
-
