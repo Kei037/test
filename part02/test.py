@@ -125,7 +125,7 @@ file.close()
 # 3) readlines() 메소드
 # 라인 line 하나가 아니라 전체 라인 lines을 모두 읽어 각 라인 line 단위로 리스트에 저장하는 메소드
 print()
-file = open('input/hello.txt', 'rt' , encoding='cp949')
+file = open('input/hello.txt', 'rt', encoding='cp949')
 
 line_list = file.readlines()
 print(line_list) # ['안녕하세요.\n', '반갑습니다.\n', 'Hello.\n', 'Nice to meet you.\n']
@@ -157,4 +157,36 @@ line_list = file.readlines()
 sys.stdout.writelines(line_list)
 
 file.close()
+
+print()
+
+data_list_new = []
+# 1. 기존 파일을 읽음
+with open('input/연락처.txt', 'rt', encoding='cp949') as file:
+    data_list = file.readlines()  # 라인 단위로 읽은 후 리스트로 반환 -> 라인 단위로 반복문을 사용할 수 있음
+    count = 0  # 변경 횟수 저장할 변수
+    string_to_find = '"011'  # 중간에 011이 들어간 경우도 있어서 "011 로 문자 검색
+    for row in data_list:
+        if row.find(string_to_find) >= 0:  # 해당 문자열을 찾은 경우
+            count += 1
+            row = row.replace(string_to_find, '"010')  # 문자열 변경
+        data_list_new.append(row)
+
+print(f'\n총 {count}건의 011 데이터를 찾았습니다.')
+print(data_list_new)
+print()
+
+# 2. 변경된 내용을 저장
+# 원본 손상을 막기 위해 복사본 생성
+# 파이참에서 확인하기 쉽게 uft-8로 인코딩 설정
+with open('./output/연락처_복사본.txt', 'wt', encoding='utf-8') as file:
+    for row in data_list_new:
+        file.write(row)
+
+# 변경내용 확인
+with open('./output/연락처_복사본.txt', 'rt', encoding='utf-8') as file:
+    data_list = file.readlines()
+    sys.stdout.writelines(data_list)
+
+
 

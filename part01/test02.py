@@ -80,8 +80,8 @@ a = 10
 b = 0
 print(f'{a} > 0 and {b} > 0 : {a > 0 and b > 0}')  # False / True and False
 print(f'{a} > 0 or {b} > 0 : {a > 0 or b > 0}')  # True / True or False
-print('not {} : {}'.format(a, not  a))  # False / 0 이 아니면 True
-print('not {} : {}'.format(b, not  b))  # True / 0이면 False
+print('not {} : {}'.format(a, not a))  # False / 0 이 아니면 True
+print('not {} : {}'.format(b, not b))  # True / 0이면 False
 print()
 
 # 시퀀스 연산자 : 순서가 있는 시퀀스 (리스트, 튜플, range, 문자열 등) 에서 사용할 수 있는 연산자

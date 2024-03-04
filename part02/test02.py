@@ -30,3 +30,6 @@ for line in line_list:  # 줄 단위 문자열 추출
             count += 1
 
 print(f'꿀은 전체 {count}번 나타납니다.')
+file.close()
+
+
