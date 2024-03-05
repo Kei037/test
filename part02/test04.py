@@ -28,7 +28,7 @@ with open('./input/아파트(매매)_실거래가_20240304154528.csv', encoding=
             new_datas.append(new_data)
 print(new_datas)
 header: list = list(new_datas[0].keys())
-
+print(header)
 file_name = 'apt_2403_조건1.csv'
 with open(f'./output/{file_name}', 'w', newline='') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=header)
