@@ -36,11 +36,11 @@ nx = 89
 ny = 90
 
 # 4) 응답자료형식
-date_type = 'JSON'
+data_type = 'JSON'
 
 # 5) url 설정
-url = f'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'
-parameter = f'?serviceKey={service_key}&baseDate={base_date}&baseTime={base_time}&nx={nx}&ny={ny}&dateType={date_type}'
+url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'
+parameter = f'?serviceKey={service_key}&base_date={base_date}&base_time={base_time}&nx={nx}&ny={ny}&dataType={data_type}'
 print(url + parameter)
 
 # 2. 서버에서 요청값을 받은 후 파싱
