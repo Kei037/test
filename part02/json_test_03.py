@@ -34,11 +34,11 @@ name_list: List[str] = ['측정소 명', '측정소 주소', '위도', '경도',
 for item in dict_data['response']['body']['items']:
     if item['addr'][0:2] == '대구':
         new_item: dict = dict()
-        print(item['stationName'])
-        print(item['addr'])
-        print(item['dmX'])
-        print(item['dmY'])
-        print(item['year'])
+        # print(item['stationName'])
+        # print(item['addr'])
+        # print(item['dmX'])
+        # print(item['dmY'])
+        # print(item['year'])
 
         new_item[name_list[0]] = item['stationName']
         new_item[name_list[1]] = item['addr']
