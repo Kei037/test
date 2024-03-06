@@ -2,8 +2,8 @@
 # xml만 지원, 키 필요
 # https://www.data.go.kr/data/15095074/openapi.do
 # https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15095074
-#
 
+import csv
 import datetime
 import pprint
 import requests
@@ -39,3 +39,10 @@ for data in data_dict['response']['body']['items']['item']:
 
 pprint.pprint(dict_list)
 
+with open(f'./output/airport.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=['항공사', '편명', '예정시간', '도착지공항'])
+    writer.writeheader()
+    for data in dict_list:
+        data: dict
+        writer.writerow(data)
+print('airport.csv 파일이 생성 되었습니다.')
