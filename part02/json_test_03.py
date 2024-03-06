@@ -6,7 +6,6 @@
 from typing import List
 import requests
 import json
-import datetime
 import csv
 
 # 초기값 설정
