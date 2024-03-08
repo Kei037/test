@@ -20,3 +20,5 @@ soup = bs(response.text, 'html.parser')
 tag_symbol = soup.select_one('.mw-parser-output ul')
 print(tag_symbol)
 
+text_symbol = soup.find('a').text
+print(text_symbol)
