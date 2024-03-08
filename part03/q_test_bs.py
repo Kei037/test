@@ -38,13 +38,13 @@ for tag in tags:
     response = requests.get(link)
     soup = bs(response.text, 'html.parser')
 
-    news_line = soup.find('div', {'class': 'article_view'}).find_all('p')
-    news_line_save = ''
-    for news_line_depth in news_line:
-        # print(news_line_depth.text)
-        news_line_save = news_line_depth.text
-    new_dict['뉴스'] = news_line_save
-    news_line_save = ''
+    news = soup.find('div', {'class': 'article_view'}).text.strip()
+    # print(news)
+    new_dict['뉴스'] = news
+
     dict_list.append(new_dict)
-    print('*' * 20)
+    # print('*' * 20)
 pprint.pprint(dict_list)
+
+from part02.share import save_csv
+save_csv('./output/daum_news.csv', dict_list)
