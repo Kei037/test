@@ -41,7 +41,7 @@ for idx, chart in enumerate(chart_list):
 
     # 앨범 이미지 저장
     response = requests.get(chart.select_one('.image_typeAll img').get('src'))
-    with open(f'./output_image/melon/{idx + 1}_{new_dict["곡 제목"]}_{new_dict["아티스트"]}.png', 'wb') as image_file:
+    with open(f'./output_image/melon/{new_dict["순위"]}_{new_dict["곡 제목"]}_{new_dict["아티스트"]}.png', 'wb') as image_file:
         image_file.write(response.content)
         print(f'{idx + 1} / {len(chart_list)}')
 
