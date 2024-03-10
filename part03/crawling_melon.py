@@ -1,4 +1,3 @@
-import csv
 import pprint
 import requests
 from bs4 import BeautifulSoup as bs
@@ -19,7 +18,6 @@ def requests_get(url: str) -> Response:
     return requests.get(url, headers=request_header)
 
 url = 'https://www.melon.com/chart/'
-
 response = requests_get(url)
 soup = bs(response.content, 'html.parser')
 # print(soup.prettify())
@@ -30,10 +28,12 @@ chart_list = soup.select('table > tbody tr')
 dict_list: list[dict] = list()
 for idx, chart in enumerate(chart_list):
     new_dict: dict = dict()
-    # print(chart.select('div.ellipsis.rank01 > span > a')[0].text)
-    # print(chart.select('div.ellipsis.rank02 > span > a')[0].text)
-    # print(chart.select('td:nth-child(7) > div > div > div > a')[0].text)
+    # print(idx + 1)
+    # print(chart.select_one('.rank01').text.strip())
+    # print(chart.select_one('.rank02 > a').text.strip())
+    # print(chart.select_one('.rank03').text.strip())
     # print(chart.select_one('.image_typeAll img').get('src'))
+
     new_dict['순위'] = idx + 1
     new_dict['곡 제목'] = chart.select_one('.rank01').text.strip()
     new_dict['아티스트'] = chart.select_one('.rank02 a').text.strip()
