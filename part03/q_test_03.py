@@ -20,10 +20,10 @@ for idx, chart in enumerate(chart_list):
     new_dict['영화 제목'] = chart.select_one('.title').text.strip()
     release_date = chart.select_one('.txt-info > strong').text
 
-    if release_date.find('개봉') >= 0:
-        new_dict['개봉일'] = release_date.replace('개봉', '').strip()
-    elif release_date.find('재개봉') >= 0:
+    if release_date.find('재개봉') >= 0:
         new_dict['개봉일'] = release_date.replace('재개봉', '').strip()
+    elif release_date.find('개봉') >= 0:
+        new_dict['개봉일'] = release_date.replace('개봉', '').strip()
 
     new_dict['예매율'] = chart.select_one('.score span').text.strip()
 
