@@ -29,7 +29,7 @@ for item in dict_data['data']:
 
             dict_list.append(new_dict)
 
-# pprint.pprint(dict_list)
+pprint.pprint(dict_list)
 
 from share import save_csv
 save_csv('./output/daegufood_street.csv', dict_list)
